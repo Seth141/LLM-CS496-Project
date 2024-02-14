@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <header className="bg-dark-background glass sticky top-0 z-[20] mx-auto flex w-full justify-start items-center border-b border-gray-500 p-8">
       <div className="flex-1">
-        <ComponentOne />
+        {/*<ComponentOne />*/}
       </div>
       <StyledText>
         <h3> . </h3>
