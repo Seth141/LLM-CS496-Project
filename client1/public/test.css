@@ -1,0 +1,166 @@
+body {
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.absolute {
+    position: absolute;
+    top: 50px !important;
+    inset: 0;
+    justify-content: center;
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.bg-shape1 {
+    width: 300px;
+    height: 500px;
+    border-radius: 9999px;
+    position: relative;
+    animation: one 17s infinite;
+}
+
+.bg-shape2 {
+    width: 300px;
+    height: 500px;
+    border-radius: 9999px;
+    position: relative;
+    animation: two 15s infinite;
+}
+
+.bg-shape3 {
+    width: 300px;
+    height: 500px;
+    border-radius: 9999px;
+    position: relative;
+    animation: three 19s infinite;
+}
+
+@keyframes one {
+    0% {
+        left: 0px;
+        top: 0px;
+    }
+
+    25% {
+        left: -150px;
+        top: 70px;
+    }
+
+    50% {
+        left: 100px;
+        top: 150px;
+    }
+
+    75% {
+        left: 90px;
+        top: 100px;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+
+@keyframes two {
+    0% {
+        left: 0px;
+        top: 0px;
+    }
+
+    25% {
+        left: 50px;
+        top: -40px;
+    }
+
+    50% {
+        left: -300px;
+        top: 50px;
+    }
+
+    75% {
+        left: 50px;
+        top: 100px;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+
+@keyframes three {
+    0% {
+        left: 0px;
+        top: 0px;
+    }
+
+    25% {
+        left: 70px;
+        top: -20px;
+    }
+
+    50% {
+        left: -90px;
+        top: 10px;
+    }
+
+    75% {
+        left: 250px;
+        top: -80px;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+
+.opacity-50 {
+    opacity: .5;
+}
+
+.bg-blur {
+    filter: blur(25px);
+
+}
+
+.bg-objectTwo {
+    background-color: rgb(122, 120, 120);
+}
+
+.bg-objectOne {
+    background-color: rgb(122, 120, 120);
+}
+
+.bg-objectThree {
+    background-color: rgb(122, 120, 120);
+}
+
+h1 {
+    margin: 0 auto;
+    top: 200px;
+    text-align: center;
+    font-family: sans-serif;
+
+}
+
+.container {
+    width: 800px;
+    height: 250px;
+    margin: 200px auto;
+}
+
+.glass {
+    background: linear-gradient(135deg, rgba(155, 151, 151, 0.1), rgba(227, 221, 221, 0));
+    backdrop-filter: blur(70px);
+    -webkit-backdrop-filter: blur(90px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
