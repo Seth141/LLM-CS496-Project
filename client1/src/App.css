@@ -35,7 +35,7 @@
 
 .chatbox {
   width: 100%; /* Take full width */
-  max-width: 640px; /* Or any maximum width you prefer */
+  max-width: 640px; 
   margin-top: 20px; /* Or any space you want from the top */
   /* rest of your styles */
 }
@@ -62,7 +62,7 @@
 }
 
 .chat-input-textarea {
-  width: calc(70% - 20px); 
+  width: calc(50% - 20px); 
   padding: 12px;
   background-color: #dde0ef;
   
@@ -70,7 +70,7 @@
   margin-bottom: 10px;
   border: none;
   outline: none;
-  box-shadow: 0 0 8px 0 rgba(107, 106, 106, 0.25);
+  box-shadow: 0 0 8px 0 rgba(30, 2, 66, 0.25);
   resize: none; /* Allow only vertical resizing */
   overflow: auto;
   box-sizing: border-box;
@@ -99,7 +99,7 @@
 }
 
 .chat-message-center {
-  max-width: 640px;
+  max-width: 940px;
   margin-left:auto;
   margin-right:auto;
   display: flex;
@@ -111,14 +111,14 @@
 }
 
 .avatar{
-  background:rgb(86, 86, 86);
+  background:rgb(71, 71, 71);
   border-radius: 50%;
   width: 40px;
   height: 40px;
 }
 
 .avatar.chatgpt{
-  background:#8d86c1;
+  background:#7168b9;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -140,7 +140,7 @@
 
 .chat-card {
   margin: 20px 0;
-  max-width: 600px;
+  max-width: 750px;
   width: 100%;
   overflow-y: auto; /* Make the chat log scrollable */
   max-height: 400px; /* Maximum height for the chat log */
