@@ -8,7 +8,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const openai = new OpenAI({
-    apiKey: "/*API key here*/" // Need to replace with process.env.OPENAI_API_KEY in production
+    apiKey: "/*API Key Here*/" // Need to replace with process.env.OPENAI_API_KEY in production
 });
 
 const port = 3080;
@@ -32,3 +32,4 @@ app.post('/', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 });
+

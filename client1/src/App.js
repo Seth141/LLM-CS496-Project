@@ -1,22 +1,23 @@
+import { useState, useEffect } from 'react';
 import './normal.css';
 import './App.css';
 import Header from './components/Header';
 import { Helmet } from 'react-helmet';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-markup'; // For HTML
-import 'prismjs/components/prism-python'; // Add other languages as needed
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-python';
 import './prism.css';
 
 function App() {
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
+  const [inputCount, setInputCount] = useState(0); // Track the number of inputs
 
   function clearChat() {
     setChatLog([]);
+    setInputCount(0); // Reset input count for a new chat session
   }
 
   function handleKeyPress(e) {
@@ -28,28 +29,41 @@ function App() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const chatLogNew = [...chatLog, { user: "me", content: input }];
+    const nextInputCount = inputCount + 1;
+    setInputCount(nextInputCount); // Increment input count before processing
 
-    try {
-      const response = await fetch("http://localhost:3080/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ message: input })
-      });
+    if (nextInputCount === 1) {
+      // First static message
+      setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: "Try to be even more specific." }]);
+    } else if (nextInputCount === 2) {
+      // Second static message
+      setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: "Last step, add more helpful details in your prompt." }]);
+    } else {
+      // Process the input normally from the third message onwards
+      const chatLogNew = [...chatLog, { user: "me", content: input }];
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      try {
+        const response = await fetch("http://localhost:3080/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ message: input })
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setChatLog([...chatLogNew, { user: "gpt", content: data.message.content }]);
+      } catch (error) {
+        console.error("Fetch error: " + error.message);
+      } finally {
+        setInput(""); // Clearing the input field
       }
-
-      const data = await response.json();
-      setChatLog([...chatLogNew, { user: "gpt", content: data.message.content }]);
-    } catch (error) {
-      console.error("Fetch error: " + error.message);
-    } finally {
-      setInput(""); // Clearing our input field
     }
+    setInput(""); // Ensure input is cleared after each submission
   }
 
   return (
