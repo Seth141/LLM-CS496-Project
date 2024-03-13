@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './normal.css';
 import './App.css';
 import Header from './components/Header';
@@ -13,11 +13,25 @@ import './prism.css';
 function App() {
   const [input, setInput] = useState("");
   const [chatLog, setChatLog] = useState([]);
-  const [inputCount, setInputCount] = useState(0); // Track the number of inputs
+  const [inputCount, setInputCount] = useState(0);
+  const chatLogRef = useRef(null);
+
+  useEffect(() => {
+    if (chatLogRef.current) {
+      const scroll = () => {
+        chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
+      };
+      
+      requestAnimationFrame(() => {
+        // This ensures that the browser paints the DOM before we scroll
+        requestAnimationFrame(scroll);
+      });
+    }
+  }, [chatLog]);
 
   function clearChat() {
     setChatLog([]);
-    setInputCount(0); // Reset input count for a new chat session
+    setInputCount(0);
   }
 
   function handleKeyPress(e) {
@@ -30,16 +44,13 @@ function App() {
   async function handleSubmit(e) {
     e.preventDefault();
     const nextInputCount = inputCount + 1;
-    setInputCount(nextInputCount); // Increment input count before processing
+    setInputCount(nextInputCount);
 
     if (nextInputCount === 1) {
-      // First static message
       setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: "Try to be even more specific." }]);
     } else if (nextInputCount === 2) {
-      // Second static message
       setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: "Last step, add more helpful details in your prompt." }]);
     } else {
-      // Process the input normally from the third message onwards
       const chatLogNew = [...chatLog, { user: "me", content: input }];
 
       try {
@@ -60,10 +71,10 @@ function App() {
       } catch (error) {
         console.error("Fetch error: " + error.message);
       } finally {
-        setInput(""); // Clearing the input field
+        setInput("");
       }
     }
-    setInput(""); // Ensure input is cleared after each submission
+    setInput("");
   }
 
   return (
@@ -73,10 +84,8 @@ function App() {
         <title>Chat Application</title>
       </Helmet>
       
-      {/* Chat card */}
       <div className="chat-card glass">
-        {/* Chat log */}
-        <div className="chat-log">
+        <div className="chat-log" ref={chatLogRef}>
           {chatLog.map((chatMessage, index) => (
             <ChatMessage key={index} message={chatMessage} />
           ))}
@@ -104,17 +113,13 @@ function App() {
 }
 
 function ChatMessage({ message }) {
-  const messageIsCode = message.user === "gpt" && message.content.startsWith("```");
-
-  // This effect will run when the component mounts and whenever the message changes.
   useEffect(() => {
-    // Immediately apply syntax highlighting to the code blocks.
-    if (messageIsCode) {
+    if (message.user === "gpt" && message.content.startsWith("```")) {
       Prism.highlightAll();
     }
-  }, [message]); // Dependency array with message ensures the effect runs when message updates.
+  }, [message]);
 
-  // Detect and format the code content.
+  const messageIsCode = message.user === "gpt" && message.content.startsWith("```");
   const formattedContent = messageIsCode ? formatCode(message.content) : message.content;
 
   return (
@@ -133,9 +138,8 @@ function ChatMessage({ message }) {
   );
 }
 
-// Helper function to strip the backticks and format the code.
 function formatCode(content) {
-  const languageRegex = /```(\w+)\s([\s\S]*?)```/; // Regex to extract language and code.
+  const languageRegex = /```(\w+)\s([\s\S]*?)```/;
   const matches = content.match(languageRegex);
   if (matches && matches[1] && matches[2]) {
     const language = matches[1].toLowerCase();
@@ -144,7 +148,7 @@ function formatCode(content) {
       return Prism.highlight(code, Prism.languages[language], language);
     }
   }
-  return content; // Return unformatted if no match or language not supported.
+  return content;
 }
 
 export default App;

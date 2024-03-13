@@ -82,11 +82,6 @@
   color: #61dafb;
 }
 
-.chat-log {
-  padding: 0.5rem; /* Add padding for the chat log */
-  overflow-y: auto; /* Ensures only this part is scrollable */
-  max-height: 700px; /* Limit the height of the chat log */
-}
 
 .new-chat-button {
   position: absolute; /* Positioning the button absolutely relative to its positioned parent */
@@ -139,11 +134,16 @@
 }
 
 .chat-card {
-  margin: 20px 0;
+  
   max-width: 750px;
   width: 100%;
-  overflow-y: auto; /* Make the chat log scrollable */
-  max-height: 400px; /* Maximum height for the chat log */
-  position: relative; /* Needed for absolute positioning of the input holder */
+  overflow-y: auto; /* Ensure this property is set correctly */
+  max-height: 500px; /* Adjust the max-height as needed for your design */
+  position: relative;
 }
 
+.chat-log {
+  padding: 0.5rem;
+  overflow-y: auto; /* This ensures the chat log itself is scrollable */
+  max-height: 500px; /* This might need adjustment based on your layout */
+}

@@ -8,7 +8,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const openai = new OpenAI({
-    apiKey: "/*API Key Here*/" // Need to replace with process.env.OPENAI_API_KEY in production
+    apiKey: "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" // Need to replace with process.env.OPENAI_API_KEY in production
 });
 
 const port = 3080;
