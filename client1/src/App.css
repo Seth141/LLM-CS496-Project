@@ -10,6 +10,7 @@
 }
 
 
+
 .sidemenu {
   width: 260px;
   padding: 10px;
@@ -146,4 +147,95 @@
   padding: 0.5rem;
   overflow-y: auto; /* This ensures the chat log itself is scrollable */
   max-height: 500px; /* This might need adjustment based on your layout */
+}
+
+
+/* Examples Button */
+.examples-button {
+  position: absolute; /* Positioning the button absolutely relative to its positioned parent */
+  bottom: 80px; 
+  left: 50px;
+  padding: 12px;
+  border: none;
+  border-radius: 20px; /* Gives the pill shape */
+  background-color: #848586; /* Example blue, matches your App-link color for consistency */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: ease 0.25s all;
+}
+
+.examples-button:hover {
+  background-color: #a5a7b0; 
+}
+
+
+/* Example Cards */
+.example-card {
+  background: #dde0ef; /* Matches your chat input for consistency */
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none; /* Optional: Adds a clean look without borders */
+}
+
+/* Examples Container */
+.examples-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 47, 47, 0.5); /* Semi-transparent black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Ensure it's above other content */
+}
+
+/* Examples Content */
+.examples-content {
+  position: relative; /* Added to position the close button absolutely within this container */
+  width: 90%;
+  max-width: 640px; /* Matches your .chatbox for consistency */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-y: auto; /* Allows scrolling within the container */
+  box-shadow: 0 0 8px 0 rgba(30, 2, 66, 0.25); /* Matches your input shadow for consistent styling */
+}
+
+/* Close Button */
+.examples-close {
+  position: absolute;
+  top: 0px; /* Adjusted for alignment */
+  right: 0px; /* Adjusted for alignment */
+  font-size: 24px;
+  color: purple; /* As specified */
+  cursor: pointer;
+  padding: 5px; /* Provides space around the 'x' for easier clicking */
+  transition: ease 0.25s all;
+}
+
+.examples-close:hover {
+  color: #9b4dca; /* Lighter purple on hover for visual feedback */
+}
+
+
+.new-button {
+  padding: 12px 30px; /* Adjust padding to your preference for the pill shape */
+  border: none;
+  border-radius: 20px; /* Pill shape */
+  background-color: #848586; /* Example blue, adjust as needed */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: ease 0.25s all;
+  position: absolute; /* Positioning the button absolutely relative to its positioned parent */
+  bottom: 30px; 
+  left: 50px; 
+}
+
+.new-button:hover {
+  background-color: #a5a7b0;  /* Lighter blue on hover for visual feedback */
 }

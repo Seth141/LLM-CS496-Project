@@ -15,13 +15,14 @@ function App() {
   const [chatLog, setChatLog] = useState([]);
   const [inputCount, setInputCount] = useState(0);
   const chatLogRef = useRef(null);
+  const [showExamples, setShowExamples] = useState(false);
 
   useEffect(() => {
     if (chatLogRef.current) {
       const scroll = () => {
         chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
       };
-      
+
       requestAnimationFrame(() => {
         // This ensures that the browser paints the DOM before we scroll
         requestAnimationFrame(scroll);
@@ -83,7 +84,7 @@ function App() {
       <Helmet>
         <title>Chat Application</title>
       </Helmet>
-      
+
       <div className="chat-card glass">
         <div className="chat-log" ref={chatLogRef}>
           {chatLog.map((chatMessage, index) => (
@@ -105,9 +106,26 @@ function App() {
         </form>
       </div>
 
-      <div className="new-chat-button" onClick={clearChat}>
-        <button>+ New</button>
-      </div>
+      
+      <button className="new-button" onClick={clearChat}>New</button>
+      
+
+      {/* Examples Button */}
+      <button className="examples-button" onClick={() => setShowExamples(true)}>Examples</button>
+
+      {/* Examples Container */}
+      {showExamples && (
+        <div className="examples-container">
+          <div className="examples-content">
+            {/* Close button should be the first element inside examples-content for clarity */}
+            <div className="examples-close" onClick={() => setShowExamples(false)}>×</div>
+            <div className="example-card">Card 1 Content</div>
+            <div className="example-card">Card 2 Content</div>
+            <div className="example-card">Card 3 Content</div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
