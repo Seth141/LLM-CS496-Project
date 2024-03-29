@@ -9,6 +9,10 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-python';
 import './prism.css';
+import exampleImage0 from './example-0.png';
+import exampleImage1 from './example-1.png';
+import exampleImage2 from './example-2.png';
+
 
 function App() {
   const [input, setInput] = useState("");
@@ -24,7 +28,7 @@ function App() {
       };
 
       requestAnimationFrame(() => {
-        // This ensures that the browser paints the DOM before we scroll
+        // Painting the DOM before we scroll here: 
         requestAnimationFrame(scroll);
       });
     }
@@ -100,28 +104,27 @@ function App() {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             className="chat-input-textarea glass"
-            placeholder="Type your message here"
+            placeholder="Ask Ebb a question"
             rows="1"
           />
         </form>
       </div>
 
-      
       <button className="new-button" onClick={clearChat}>New</button>
-      
 
       {/* Examples Button */}
       <button className="examples-button" onClick={() => setShowExamples(true)}>Examples</button>
 
       {/* Examples Container */}
+
+      {/*Need to replace the text on the cards with images of examples (white)*/}
       {showExamples && (
         <div className="examples-container">
           <div className="examples-content">
-            {/* Close button should be the first element inside examples-content for clarity */}
             <div className="examples-close" onClick={() => setShowExamples(false)}>×</div>
-            <div className="example-card">Card 1 Content</div>
-            <div className="example-card">Card 2 Content</div>
-            <div className="example-card">Card 3 Content</div>
+            <div className="example-card"><img src={exampleImage0} alt="Example 1" /></div>
+            <div className="example-card"><img src={exampleImage1} alt="Example 2" /></div>
+            <div className="example-card"><img src={exampleImage2} alt="Example 3" /></div>
           </div>
         </div>
       )}

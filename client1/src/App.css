@@ -9,8 +9,6 @@
   position: relative;
 }
 
-
-
 .sidemenu {
   width: 260px;
   padding: 10px;
@@ -103,6 +101,8 @@
   padding-left: 24px;
   padding-right: 24px;
   background-color: #ebebee;
+  display: flex;
+  align-items: center;
 
 }
 
@@ -111,6 +111,8 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  padding: 1px;
+  flex-shrink: 0;
 }
 
 .avatar.chatgpt{
@@ -118,6 +120,7 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  padding: 1px;
 }
 
 .message{
@@ -158,7 +161,7 @@
   padding: 12px;
   border: none;
   border-radius: 20px; /* Gives the pill shape */
-  background-color: #848586; /* Example blue, matches your App-link color for consistency */
+  background-color: #4d4d4d; /* Example blue, matches your App-link color for consistency */
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -177,6 +180,10 @@
   margin-bottom: 10px;
   border-radius: 5px;
   border: none; /* Optional: Adds a clean look without borders */
+  overflow: auto; /* Allows scrolling */
+  white-space: nowrap;
+  overflow-y: auto; /* Allows vertical scrolling */
+  max-height: 500px;
 }
 
 /* Examples Container */
@@ -186,7 +193,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(47, 47, 47, 0.5); /* Semi-transparent black */
+  background-color: rgba(7, 7, 7, 0.5); /* Semi-transparent black */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,10 +206,10 @@
   width: 90%;
   max-width: 640px; /* Matches your .chatbox for consistency */
   background: white;
-  padding: 20px;
+  padding: 7px;
   border-radius: 10px;
   overflow-y: auto; /* Allows scrolling within the container */
-  box-shadow: 0 0 8px 0 rgba(30, 2, 66, 0.25); /* Matches your input shadow for consistent styling */
+  box-shadow: 0 0 8px 0 rgba(91, 60, 152, 0.25); /* Matches your input shadow for consistent styling */
 }
 
 /* Close Button */
@@ -213,8 +220,8 @@
   font-size: 24px;
   color: purple; /* As specified */
   cursor: pointer;
-  padding: 5px; /* Provides space around the 'x' for easier clicking */
-  transition: ease 0.25s all;
+  padding: 10px; /* Provides space around the 'x' for easier clicking */
+  transition: ease 1s all;
 }
 
 .examples-close:hover {
@@ -223,10 +230,10 @@
 
 
 .new-button {
-  padding: 12px 30px; /* Adjust padding to your preference for the pill shape */
+  padding: 12px 30px; 
   border: none;
   border-radius: 20px; /* Pill shape */
-  background-color: #848586; /* Example blue, adjust as needed */
+  background-color: #505050; 
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -237,5 +244,44 @@
 }
 
 .new-button:hover {
-  background-color: #a5a7b0;  /* Lighter blue on hover for visual feedback */
+  background-color: #676767;  
+}
+
+/* Add a new class for the images inside example cards */
+.example-card img {
+  max-width: 100%; /* Ensure it doesn't overflow the card */
+  max-height: 100%; /* Ditto for height */
+  object-fit: cover; /* This will cover the area without stretching the image */
+}
+
+.example-card img {
+  display: block; /* Images are block level to allow scrolling */
+  width: auto; /* Width can be auto if you want the original width of the image */
+  height: auto; /* Height can be auto to maintain aspect ratio */
+  max-width: none; /* Override any max-width set previously */
+}
+
+.example-card img {
+  height: 100%; /* This will scale the height to the container's height */
+  width: auto; /* Allows the width to be as wide as the image naturally is */
+  width: 100%; /* This will scale the width to the container's width */
+  height: auto;
+}
+
+:root {
+  --header-height: 60px; /* Example height, adjust accordingly */
+  
+}
+
+/* Position the examples container below the header */
+.examples-container {
+  top: var(--header-height);
+  bottom: 0; /* This will stretch the container to the bottom of the viewport */
+  overflow-y: auto; /* Allows vertical scrolling */
+}
+
+/* Set the examples content to take the remaining height */
+.examples-content {
+  height: calc(85% - var(--header-height));
+  overflow-y: auto; /* Make just the content scrollable if that's what you want */
 }
