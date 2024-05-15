@@ -35,9 +35,9 @@ function updateMessageQueue(userMessage, responseMessage) {
 
 // Function to determine the appropriate model based on keywords
 const getModelBasedOnKeywords = (message) => {
-    const keywords = ['code', 'math', 'software', 'app'];
+    const keywords = ['code', 'math', 'software', 'app', 'python', 'user', 'application'];
     return keywords.some(keyword => message.toLowerCase().includes(keyword)) 
-                  ? 'gpt-4-1106-preview'
+                  ? 'gpt-4o'
                   : 'gpt-3.5-turbo';
 };
 

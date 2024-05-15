@@ -13,6 +13,27 @@ import exampleImage0 from './example-0.png';
 import exampleImage1 from './example-1.png';
 import exampleImage2 from './example-2.png';
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+const firstInputResponses = shuffleArray([
+  "Try to be even more specific.",
+  "Can you provide more details?",
+  "Please elaborate further.",
+  "Expand your query for a clearer response."
+]);
+
+const secondInputResponses = shuffleArray([
+  "Last step, add more helpful details in your prompt.",
+  "Almost there, just a bit more detail needed.",
+  "You're close! Add some more specifics.",
+  "Nearly there—enhance your query with additional information."
+]);
 
 function App() {
   const [input, setInput] = useState("");
@@ -52,9 +73,9 @@ function App() {
     setInputCount(nextInputCount);
 
     if (nextInputCount === 1) {
-      setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: "Try to be even more specific." }]);
+      setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: firstInputResponses[0] }]);
     } else if (nextInputCount === 2) {
-      setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: "Last step, add more helpful details in your prompt." }]);
+      setChatLog([...chatLog, { user: "me", content: input }, { user: "gpt", content: secondInputResponses[0] }]);
     } else {
       const chatLogNew = [...chatLog, { user: "me", content: input }];
 
